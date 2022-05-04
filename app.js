@@ -7,9 +7,7 @@ const port = 3000
 
 app.use(email_obfuscator(use_defaults = 0))
 
-app.get("/", (req, res) => {
-  res.sendFile(__dirname + "/public/index.html")
-})
+app.use(express.static(__dirname + "/public"))
 
 app.listen(port, () => {
   console.log("Server listening on port", port)

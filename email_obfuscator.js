@@ -39,6 +39,7 @@ var fn_attach_debofuscator = (str, key, id) => {
 
         return `
         <script id="email_obfuscation_js_` + id + `">
+
             // email_obfuscation.js
             document.addEventListener("DOMContentLoaded", () => {
                 function fn_base64_to_bytes(base64) {
@@ -58,9 +59,13 @@ var fn_attach_debofuscator = (str, key, id) => {
                         return fn_bytes_to_string(fn_base64_to_bytes(b).map(byte => byte ^ key))
                     })
                 }
-                document.write(fn_deobfuscate(document.documentElement.innerHTML))
                 var el = document.getElementsByTagName("head");
-                el && el.length > 0 && el[0].removeChild(document.getElementById("email_obfuscation_js_` + id + `"))
+                var script_el = document.getElementById("email_obfuscation_js_` + id + `")
+                el && el.length > 0 && el[0].removeChild(script_el)
+
+                document.write(fn_deobfuscate(document.documentElement.innerHTML))
+                document.close()
+                
             })
         </script>` + "\n\n" + b
     });
