@@ -8,6 +8,10 @@ Some basic web scraping bots will download your source code and pull out email a
 
 It's inspired by other similar systems, such as that offered by Cloudflare (not affiliated). Their implementation is probably more reliable :)
 
+## Known Issues
+
+1. Some characters, mainly those with accents or emojis will not decode correctly. Therefore the decoded text may appear broken or it may contain the wrong characters.
+
 ## Usage
 See **app.js** for full example. 
 
