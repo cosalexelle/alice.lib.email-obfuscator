@@ -76,8 +76,11 @@ module.exports = function(use_defaults = false){
 
     return (req, res, fn) => {
 
-        key = use_defaults ? DEFAULT_OBFUSCATION_KEY : Math.floor(Math.random() * 255)
-        id = use_defaults ? DEFAULT_OBFUSCATION_ID : Math.floor(Math.random() * new Date().getTime())
+        const random_key = Math.floor(Math.random() * 255)
+        const random_id = Math.floor(Math.random() * new Date().getTime())
+
+        var key = use_defaults ? DEFAULT_OBFUSCATION_KEY : random_key
+        var id = use_defaults ? DEFAULT_OBFUSCATION_ID : random_id
 
         const res_write = res.write;
         res.write = function (chunk) {
